@@ -1,0 +1,162 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: rgba(248, 248, 248, 1);
+    padding: 20px;
+}
+
+.swiper {
+    display: none;
+}
+
+.container {
+    max-width: 1121px;
+    margin: 0 auto;
+}
+
+h2 {
+    color: rgba(126, 126, 130, 0.6);
+    font-family: TT Lakes;
+    font-style: normal;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.2px;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 32px;
+    row-gap: 16px;
+    transition: max-height 0.4s ease;
+    overflow: hidden;
+    max-height: 412px;
+
+}
+
+.grid-container.collapsed {
+    max-height: 160px;
+}
+
+.card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    width: 240px;
+    height: 72px;
+    box-sizing: border-box;
+    border: 1px solid rgba(234, 234, 234, 1);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 1);
+}
+
+.button-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: white;
+    background-image: url(img/ic_go.svg);
+    background-size: 40px 40px;
+    align-self: center;
+    flex-shrink: 0;
+}
+
+.button-end {
+    background: none;
+    display: flex;
+    align-items: center;
+    margin: 50px 0 0 0;
+}
+
+.button-readmore__text {
+    color: rgba(27, 28, 33, 1);
+    font-family: TT Lakes;
+    font-style: normal;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: -0.2px;
+    text-align: left;
+}
+
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 24px;
+        row-gap: 16px;
+    }
+
+    .card {
+        width: 100%; /* Растягиваем карточку на всю ширину колонки */
+        max-width: 240px; /* Ограничиваем максимальную ширину, если нужно */
+        height: 72px;
+        padding: 0 12px;
+    }
+}
+
+@media (max-width: 320px) {
+    body {
+        padding: 12px;
+    }
+
+    /* Отключаем grid, используем flex + scroll */
+    .grid-container {
+        display: flex;
+        flex-wrap: nowrap;
+        grid-template-columns: unset; /* сбрасываем grid */
+        column-gap: unset;
+        row-gap: unset;
+        gap: 12px; 
+        max-height: none; /* убираем ограничение высоты для скролла */
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch; /* плавный скролл на iOS */
+        padding-bottom: 8px; /* небольшой отступ для видимости скролла */
+        scrollbar-width: none; /* Убирает полосу прокрутки в Firefox */
+    }
+
+    .grid-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Убираем transition и collapsed-поведение на мобильных, если нужно */
+    .grid-container.collapsed {
+        max-height: none;
+    }
+
+    .card {
+        flex: 0 0 auto; /* не сжимать и не растягивать */
+        width: 220px; /* чуть уже, чтобы лучше помещалось */
+        height: 64px;
+        padding: 0 12px;
+    }
+
+    h2,
+    .button-readmore__text {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .button-end {
+        display: none;
+    }
+
+    .swiper {
+        display: block;
+        padding-top: 10px;
+    }
+
+    .swiper-slide {
+        opacity: 0;
+    }
+}
+
+
